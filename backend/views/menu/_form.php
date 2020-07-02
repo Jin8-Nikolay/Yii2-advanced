@@ -14,7 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'key')->textInput(['maxlength' => true]) ?>
     <?php if ($model->scenario == 'update'): ?>
-
         <div class="dd" id="domenu-1">
             <button id="domenu-add-item-btn" class="dd-new-item" onclick="return false">+</button>
             <!-- .dd-item-blueprint is a template for all .dd-item's -->
@@ -62,8 +61,7 @@ use yii\widgets\ActiveForm;
         </div>
 
         <div id="domenu-1-output" class="output-preview-container">
-            <h4>JSON Output Preview (User menu)</h4>
-            <?= $form->field($model, 'content')->textarea(['rows' => 6, 'class' => 'jsonOutput']) ?>
+            <?= $form->field($model, 'content')->hiddenInput(['rows' => 6, 'class' => 'jsonOutput'])->label(false) ?>
         </div>
     <?php else: ?>
         <?= $form->field($model, 'content')->hiddenInput(['class' => 'jsonOutput', 'value' => '[{"id":10,"title":"Главная","customSelect":"/","__domenu_params":{},"select2ScrollPosition":{"x":0,"y":0}}]', ])->label(false) ?>
@@ -71,7 +69,6 @@ use yii\widgets\ActiveForm;
     <div class="form-group">
         <?= Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
 
 </div>

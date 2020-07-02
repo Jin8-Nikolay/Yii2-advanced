@@ -188,8 +188,9 @@ AppAsset::register($this);
                                 <h1 class="page-header"><?php echo $this->title ?></h1>
                             </div>
                         </div>
-                        <?php echo $content; ?>
+
                     </div><!--end .row -->
+                    <?php echo $content; ?>
                 </div><!--end .section-body -->
             </section>
         </div><!--end #content-->
@@ -762,9 +763,11 @@ AppAsset::register($this);
         <!-- END OFFCANVAS RIGHT -->
     </div><!--end #base-->
     <!-- END BASE -->
+<?php else: ?>
+    <?php echo $content ?>
 <?php endif; ?>
 
-<?php echo $content ?>
+
 
 <?php $this->endBody() ?>
 </body>

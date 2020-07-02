@@ -1,6 +1,6 @@
 <?php
 
-use common\components\MenuBuilder;
+
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -8,6 +8,7 @@ use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
 use frontend\widgets\LanguageSwitch;
+use common\components\MenuBuilder;
 Yii::$app->redirect->init();
 AppAsset::register($this);
 ?>
@@ -68,9 +69,9 @@ AppAsset::register($this);
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
-<!--    <div class="container">-->
-<!--        --><?php //echo MenuBuilder::show('main_menu_'.Yii::$app->language, ['menuClass' => 'mainMenu'])?>
-<!--    </div>-->
+    <div class="container">
+        <?php echo MenuBuilder::show('main_menu_'.Yii::$app->language, ['menuClass' => 'mainMenu'])?>
+    </div>
 </div>
 
 <footer class="footer">

@@ -41,6 +41,20 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'i18n' => [
+            'translations' => [
+                'frontend' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => 'common\messages',
+                    'sourceLanguage' => 'ru-RU',
+                ],
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => 'common\messages',
+                    'sourceLanguage' => 'ru-RU',
+                ]
+            ]
+        ],
         'urlManager' => [
             'class' => UrlManager::class,
             'enablePrettyUrl' => true,
