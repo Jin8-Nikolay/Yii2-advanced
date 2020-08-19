@@ -3,8 +3,10 @@
 namespace common\models;
 
 use creocoder\translateable\TranslateableBehavior;
+use frontend\controllers\MainCategoryController;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use common\models\MainCategory;
 
 
 class Category extends \yii\db\ActiveRecord
@@ -18,7 +20,7 @@ class Category extends \yii\db\ActiveRecord
             TimestampBehavior::className(),
             'translate' => [
                 'class' => TranslateableBehavior::className(),
-                'translationAttributes' => ['title']
+                'translationAttributes' => ['title', 'meta_tag']
             ]
         ];
     }
@@ -34,7 +36,7 @@ class Category extends \yii\db\ActiveRecord
         return [
             [['main_category_id', 'status', 'index'], 'required'],
             [['main_category_id', 'status', 'index'], 'integer'],
-            [['images'], 'string'],
+            [['images', 'alias'], 'string'],
         ];
     }
 
@@ -43,13 +45,14 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'main_category_id' => Yii::t('backend', 'Main Category ID'),
-            'status' => Yii::t('backend', 'Status'),
-            'index' => Yii::t('backend', 'Index'),
-            'count_product' => Yii::t('backend', 'Count Product'),
-            'created_at' => Yii::t('backend', 'Created At'),
-            'updated_at' => Yii::t('backend', 'Updated At'),
-            'images' => Yii::t('backend', 'Images'),
+            'main_category_id' => Yii::t('backend', 'ID основной категории'),
+            'status' => Yii::t('backend', 'Статус'),
+            'index' => Yii::t('backend', 'Индекс'),
+            'count_product' => Yii::t('backend', 'Рассчитывать продукт'),
+            'created_at' => Yii::t('backend', 'Создано'),
+            'updated_at' => Yii::t('backend', 'Обновлен'),
+            'images' => Yii::t('backend', 'Фото'),
+            'alias' => Yii::t('backend', 'Alias'),
         ];
     }
 
@@ -61,14 +64,28 @@ class Category extends \yii\db\ActiveRecord
         return $this->hasMany(CategoryTranslate::className(), ['category_id' => 'id']);
     }
 
+    public function getMain(){
+        return $this->hasOne(MainCategory::className(), ['id' => 'main_category_id']);
+    }
+
+    public function getProduct(){
+        return $this->hasMany(Product::className(), ['category_id' => 'id']);
+    }
+
     public static function addCount($id){
         $model = self::find()->where(['id' => $id])->one();
         $model->count_product += self::$add;
         $model->save();
     }
+
     public static function subtractCount($id){
         $model = self::find()->where(['id' => $id])->one();
         $model->count_product -= self::$subtract;
         $model->save();
+    }
+
+    public function getImage()
+    {
+        return ($this->images) ? '/upload/' . $this->images : '/no-image.png';
     }
 }

@@ -7,11 +7,11 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 
-/**
- * ProductSearch represents the model behind the search form of `common\models\Product`.
- */
+
 class ProductSearch extends Product
 {
+    public $header;
+    public $short_content;
 
     public function rules()
     {
@@ -19,6 +19,7 @@ class ProductSearch extends Product
             [['id', 'category_id', 'created_at', 'updated_at', 'status'], 'integer'],
             [['price'], 'number'],
             [['image'], 'safe'],
+            [['header', 'short_content'], 'string']
         ];
     }
 
@@ -31,12 +32,27 @@ class ProductSearch extends Product
     public function search($params)
     {
         $query = Product::find();
+        $query->groupBy('id');
+        $query->joinWith('translations');
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['header'] = [
+            'asc' => [ProductTranslate::tableName() . '.header' => SORT_ASC],
+            'desc' => [ProductTranslate::tableName() . '.header' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['short_content'] = [
+            'asc' => [ProductTranslate::tableName() . '.short_content' => SORT_ASC],
+            'desc' => [ProductTranslate::tableName() . '.short_content' => SORT_DESC],
+        ];
+
+
+
 
         $this->load($params);
 
@@ -47,6 +63,8 @@ class ProductSearch extends Product
         }
 
         // grid filtering conditions
+
+
         $query->andFilterWhere([
             'id' => $this->id,
             'category_id' => $this->category_id,
@@ -57,6 +75,10 @@ class ProductSearch extends Product
         ]);
 
         $query->andFilterWhere(['like', 'image', $this->image]);
+
+        $query->andFilterWhere(['like', ProductTranslate::tableName() . '.header', $this->header]);
+
+        $query->andFilterWhere(['like', ProductTranslate::tableName() . '.short_content', $this->short_content]);
 
         return $dataProvider;
     }

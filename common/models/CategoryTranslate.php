@@ -17,8 +17,8 @@ class CategoryTranslate extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title'], 'required'],
-            [['title'], 'string', 'max' => 255],
+            [['title', 'meta_tag'], 'required'],
+            [['title', 'meta_tag'], 'string', 'max' => 255],
         ];
     }
 
@@ -27,9 +27,10 @@ class CategoryTranslate extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'category_id' => Yii::t('backend', 'Category ID'),
-            'language' => Yii::t('backend', 'Language'),
-            'title' => Yii::t('backend', 'Title'),
+            'category_id' => Yii::t('backend', 'ID категории'),
+            'language' => Yii::t('backend', 'Язык'),
+            'title' => Yii::t('backend', 'Заглавие'),
+            'meta_tag' => Yii::t('backend', 'Метатег'),
         ];
     }
 

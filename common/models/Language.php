@@ -27,12 +27,12 @@ class Language extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'code' => Yii::t('backend', 'Code'),
-            'locale' => Yii::t('backend', 'Locale'),
-            'title' => Yii::t('backend', 'Title'),
-            'icon' => Yii::t('backend', 'Icon'),
-            'status' => Yii::t('backend', 'Status'),
-            'pos' => Yii::t('backend', 'Pos'),
+            'code' => Yii::t('backend', 'Код'),
+            'locale' => Yii::t('backend', 'Место действия'),
+            'title' => Yii::t('backend', 'Заглавие'),
+            'icon' => Yii::t('backend', 'Значок'),
+            'status' => Yii::t('backend', 'Статус'),
+            'pos' => Yii::t('backend', 'Позиция'),
         ];
     }
 

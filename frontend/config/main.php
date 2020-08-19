@@ -15,6 +15,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'language' => 'ru',
+    'sourceLanguage' => 'ru',
     'components' => [
         'request' => [
             'baseUrl' => '',
@@ -38,6 +39,10 @@ return [
                 ],
             ],
         ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+            'cachePath' => '@frontend/runtime/cache',
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -45,13 +50,13 @@ return [
             'translations' => [
                 'frontend' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => 'common\messages',
-                    'sourceLanguage' => 'ru-RU',
+                    'basePath' => '@common/messages',
+                    'sourceLanguage' => 'ru',
                 ],
                 '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => 'common\messages',
-                    'sourceLanguage' => 'ru-RU',
+                    'basePath' => '@common/messages',
+                    'sourceLanguage' => 'ua',
                 ]
             ]
         ],
@@ -61,6 +66,9 @@ return [
             'showScriptName' => false,
             'enableLanguageDetection' => false,
             'rules' => [
+                '/main-category/<slug>/' => 'main-category/view',
+                '/category/<slug>/' => 'category/view',
+                '/product/<slug>/' => 'product/view',
             ],
         ],
     ],

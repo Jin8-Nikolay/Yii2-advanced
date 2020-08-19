@@ -40,9 +40,9 @@ class Redirect extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'from' => Yii::t('backend', 'From'),
-            'to' => Yii::t('backend', 'To'),
-            'status' => Yii::t('backend', 'Status'),
+            'from' => Yii::t('backend', 'Из'),
+            'to' => Yii::t('backend', 'К'),
+            'status' => Yii::t('backend', 'Статус'),
         ];
     }
 }

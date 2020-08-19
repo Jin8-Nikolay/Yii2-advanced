@@ -1,53 +1,64 @@
 <?php
 
-/* @var $this yii\web\View */
+use common\components\MenuBuilder;
+use frontend\widgets\BannerWidget;
+use yii\bootstrap\Modal;
 
-$this->title = 'My Yii Application';
+$this->title = '' . Yii::t('frontend', 'Главная') . '';
 ?>
-<div class="site-index">
+<div id="top-banner-and-menu">
+    <div class="container">
+        <div class="col-xs-12 col-sm-4 col-md-3 sidemenu-holder">
+            <!-- ================================== TOP NAVIGATION ================================== -->
+            <div class="side-menu animate-dropdown">
+                <div class="head"><i class="fa fa-list"></i><?php echo Yii::t('frontend', 'Все категории') ?></div>
+                <nav class="yamm megamenu-horizontal" role="navigation">
+                    </a>
 
-    <div class="jumbotron">
-        <h1>Congratulations!</h1>
+                    <?php
 
-        <p class="lead">You have successfully created your Yii-powered application.</p>
+                    $dependency = [
+                        'class' => 'yii\caching\DbDependency',
+                        'sql' => 'SELECT `content` FROM `menu` WHERE `key` LIKE "main_menu_%"',
+                    ];
+                    if ($this->beginCache('MenuBuilder', ['dependency' => $dependency])) {
+                        echo MenuBuilder::show('main_menu_' . Yii::$app->language, [
+                            'ul' => 'nav',
+                            'ul_li' => 'dropdown menu-item',
+                            'ul_li_a' => 'dropdown-toggle',
+                            'ul_li_a_ul' => 'dropdown-menu mega-menu',
+                            'ul_li_a_ul_li' => 'yamm-content',
+                            'ul_li_a_ul_li_div' => 'row',
+                            'ul_li_a_ul_li_div_div' => 'col-xs-12 col-lg-4',
+                        ]);
+                        $this->endCache();
+                    }
+                    ?>
+                </nav><!-- /.megamenu-horizontal -->
+            </div><!-- /.side-menu -->
+            <!-- ================================== TOP NAVIGATION : END ================================== -->
+        </div><!-- /.sidemenu-holder -->
+        <?php
+        Modal::begin([
+        'header' => '<h2>Hello world</h2>',
+        'toggleButton' => ['label' => 'click me'],
+        ]);
 
-        <p><a class="btn btn-lg btn-success" href="http://www.yiiframework.com">Get started with Yii</a></p>
-    </div>
+        echo 'Say hello...';
 
-    <div class="body-content">
+        Modal::end();
+        ?>
+        <div class="col-xs-12 col-sm-8 col-md-9 homebanner-holder">
+            <!-- ========================================== SECTION – HERO ========================================= -->
+            <div id="hero">
 
-        <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+                <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+                    <?= BannerWidget::widget() ?>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+                </div><!-- /.owl-carousel -->
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
-            </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
-        </div>
-
-    </div>
-</div>
+            <!-- ========================================= SECTION – HERO : END ========================================= -->
+        </div><!-- /.homebanner-holder -->
+    </div><!-- /.container -->
+</div><!-- /#top-banner-and-menu -->

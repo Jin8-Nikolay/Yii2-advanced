@@ -17,6 +17,8 @@ $languages = Language::findActive();
 
     <?= $form->field($model, 'index')->textInput() ?>
 
+    <?= $form->field($model, 'alias')->textInput() ?>
+
     <?php
     $items = [];
     if ($languages) {
@@ -36,7 +38,7 @@ $languages = Language::findActive();
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('backend', 'Сохранить'), ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

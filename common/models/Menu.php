@@ -29,9 +29,9 @@ class Menu extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'name' => Yii::t('backend', 'Name'),
-            'key' => Yii::t('backend', 'Key'),
-            'content' => Yii::t('backend', 'Content'),
+            'name' => Yii::t('backend', 'Название'),
+            'key' => Yii::t('backend', 'Ключ'),
+            'content' => Yii::t('backend', 'Содержание'),
         ];
     }
 }

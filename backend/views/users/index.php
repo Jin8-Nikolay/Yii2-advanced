@@ -5,7 +5,7 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 
-$this->title = Yii::t('app', 'Users');
+$this->title = Yii::t('backend', 'Пользователи');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
-    'summary' => Yii::t('admin', 'Отображено {begin} - из {totalCount} элементов'),
+    'summary' => Yii::t('backend', 'Отображено {begin} - из {totalCount} элементов'),
     'tableOptions' => [
         'class' => 'table table-banded',
     ],

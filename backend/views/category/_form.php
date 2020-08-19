@@ -25,6 +25,8 @@ $languages = Language::findActive();
 
     <?= $form->field($model, 'index')->textInput() ?>
 
+    <?= $form->field($model, 'alias')->textInput() ?>
+
     <?= $form->field($model, 'images')->widget(MediaManagerInput::className(), [
         'multiple' => true,
         'clientOptions' => [
@@ -56,7 +58,7 @@ $languages = Language::findActive();
     ?>
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('backend', 'Сохранить'), ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

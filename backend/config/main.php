@@ -1,4 +1,7 @@
 <?php
+
+use common\components\UrlManager;
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -12,7 +15,12 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'language' => 'ru',
-    'modules' => [],
+    'sourceLanguage' => 'ru',
+    'modules' => [
+        'mm' => [
+            'class' => 'iutbay\yii2\mm\Module',
+        ],
+    ],
     'components' => [
         'request' => [
             'baseUrl' => '/admin',
@@ -39,27 +47,39 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+            'cachePath' => '@backend/runtime/cache',
+        ],
         'i18n' => [
             'translations' => [
                 'backend' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => 'common\messages',
-                    'sourceLanguage' => 'ru-RU',
+                    'basePath' => '@common/messages',
+                    'sourceLanguage' => 'ru',
                 ],
                 '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => 'common\messages',
-                    'sourceLanguage' => 'ru-RU',
+                    'basePath' => '@common/messages',
+                    'sourceLanguage' => 'ua',
                 ]
             ]
         ],
         'urlManager' => [
+            'class' => UrlManager::class,
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'thumbs/<path:.*>' => 'mm/thumb/thumb',
+                'mm/api/list' => 'mm/api/list',
+                'mm/api/upload' => 'mm/api/upload',
+                'mm/api/download' => 'mm/api/download',
             ],
         ],
-
+        'fs' => [
+            'class' => 'creocoder\flysystem\LocalFilesystem',
+            'path' => '@frontend/web/upload',
+        ],
     ],
     'params' => $params,
 ];

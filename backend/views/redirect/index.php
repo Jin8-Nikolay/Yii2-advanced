@@ -3,16 +3,14 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
-/* @var $this yii\web\View */
-/* @var $searchModel common\models\RedirectSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Redirects');
+
+$this->title = Yii::t('backend', 'Перенаправление');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Redirect'), ['create'], ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
+        <?= Html::a(Yii::t('backend', 'Создать редирект'), ['create'], ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -21,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'summary' => Yii::t('admin', 'Отображено {begin} - из {totalCount} элементов'),
+        'summary' => Yii::t('backend', 'Отображено {begin} - из {totalCount} элементов'),
         'tableOptions' => [
             'class' => 'table table-banded',
         ],

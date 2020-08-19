@@ -5,12 +5,12 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 use backend\helpers\CheckBoxHelper;
 
-$this->title = Yii::t('backend', 'Categories');
+$this->title = Yii::t('backend', 'Категории');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
-<?= Html::a(Yii::t('backend', 'Create Category'), ['create'], ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
+<?= Html::a(Yii::t('backend', 'Создать категорию'), ['create'], ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
 
 
 <?php echo Html::beginForm(['/category/checkbox'], 'post') ?>
@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
-    'summary' => Yii::t('admin', 'Отображено {begin} - из {totalCount} элементов'),
+    'summary' => Yii::t('backend', 'Отображено {begin} - из {totalCount} элементов'),
     'tableOptions' => [
         'class' => 'table table-banded',
     ],
@@ -48,12 +48,12 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ]); ?>
 <?php echo Html::dropDownList('action', '', [
-    '' => 'Выберите действия',
-    'noactive' => 'Снять с публикации',
-    'inactive' => 'Опубликовать',
-    'delete' => 'Удалить'
+    '' => ''.Yii::t('backend', 'Выберите действие').'',
+    'noactive' => ''.Yii::t('backend', 'Снять с публикации').'',
+    'inactive' => ''.Yii::t('backend', 'Опубликовать').'',
+    'delete' => ''.Yii::t('backend', 'Удалить').'',
 ]) ?>
-<?php echo Html::submitButton('Применить', ['class' => 'btn btn-primary']) ?>
+<?php echo Html::submitButton(''.Yii::t('backend', 'Применить').'', ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
 <?php Pjax::end(); ?>
 <?php Html::endForm(); ?>
 

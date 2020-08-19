@@ -5,15 +5,15 @@ use yii\widgets\DetailView;
 
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Products'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('backend', 'Товары'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 
 
 <p>
-    <?= Html::a(Yii::t('backend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn ink-reaction btn-flat btn-primary']) ?>
-    <?= Html::a(Yii::t('backend', 'Delete'), ['delete', 'id' => $model->id], [
+    <?= Html::a(Yii::t('backend', 'Обновить'), ['update', 'id' => $model->id], ['class' => 'btn ink-reaction btn-flat btn-primary']) ?>
+    <?= Html::a(Yii::t('backend', 'Удалить'), ['delete', 'id' => $model->id], [
         'class' => 'btn ink-reaction btn-flat btn-danger',
         'data' => [
             'confirm' => Yii::t('backend', 'Are you sure you want to delete this item?'),

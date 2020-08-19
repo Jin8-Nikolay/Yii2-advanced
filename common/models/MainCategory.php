@@ -17,7 +17,7 @@ class MainCategory extends \yii\db\ActiveRecord
             TimestampBehavior::className(),
             'translate' => [
                 'class' => TranslateableBehavior::className(),
-                'translationAttributes' => ['title']
+                'translationAttributes' => ['title', 'meta_tag']
             ]
         ];
     }
@@ -32,6 +32,7 @@ class MainCategory extends \yii\db\ActiveRecord
         return [
             [['status', 'index'], 'required'],
             [['status', 'index'], 'integer'],
+            [['alias'], 'string'],
         ];
     }
 
@@ -39,15 +40,20 @@ class MainCategory extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'status' => Yii::t('backend', 'Status'),
-            'index' => Yii::t('backend', 'Index'),
-            'created_at' => Yii::t('backend', 'Created At'),
-            'updated_at' => Yii::t('backend', 'Updated At'),
+            'status' => Yii::t('backend', 'Статус'),
+            'index' => Yii::t('backend', 'Индекс'),
+            'created_at' => Yii::t('backend', 'Создано'),
+            'updated_at' => Yii::t('backend', 'Обновлен'),
+            'alias' => Yii::t('backend', 'Alias'),
         ];
     }
 
     public function getTranslations(){
         return $this->hasMany(MainCategoryTranslate::className(), ['main_category_id' => 'id']);
+    }
+
+    public function getCategories(){
+        return $this->hasMany(Category::className(), ['main_category_id' => 'id']);
     }
 
     public static function findActive()

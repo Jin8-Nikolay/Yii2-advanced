@@ -1,3 +1,4 @@
+<?php $this->title = ''.Yii::t('backend', 'Главная').''; ?>
 <div class="row">
 
     <!-- BEGIN ALERT - REVENUE -->

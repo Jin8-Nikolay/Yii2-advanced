@@ -13,9 +13,6 @@ class PasswordResetRequestForm extends Model
     public $email;
 
 
-    /**
-     * {@inheritdoc}
-     */
     public function rules()
     {
         return [
@@ -30,14 +27,8 @@ class PasswordResetRequestForm extends Model
         ];
     }
 
-    /**
-     * Sends an email with a link, for resetting the password.
-     *
-     * @return bool whether the email was send
-     */
     public function sendEmail()
     {
-        /* @var $user User */
         $user = User::findOne([
             'status' => User::STATUS_ACTIVE,
             'email' => $this->email,

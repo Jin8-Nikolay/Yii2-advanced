@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 
 
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('app', 'Save'), ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('backend', 'Сохранить'), ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

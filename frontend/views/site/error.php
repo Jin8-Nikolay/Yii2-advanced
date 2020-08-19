@@ -1,27 +1,23 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $name string */
-/* @var $message string */
-/* @var $exception Exception */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = $name;
 ?>
-<div class="site-error">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+<main id="faq" class="inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 center-block">
+                <div class="info-404 text-center">
+                    <h2 class="primary-color inner-bottom-xs"><?= Html::encode($this->title) ?></h2>
+                    <p class="lead"><?= nl2br(Html::encode($message)) ?></p>
+                    <div class="text-center">
+                        <a href="<?php echo Url::to(['/'])?>" class="btn-lg huge"><i class="fa fa-home"></i> <?php echo Yii::t('frontend', 'Вернуться на домашнюю страницу')?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
-</div>
+</main>

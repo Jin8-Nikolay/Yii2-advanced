@@ -5,13 +5,13 @@ use yii\grid\GridView;
 use yii\widgets\Pjax;
 
 
-$this->title = Yii::t('backend', 'Products');
+$this->title = Yii::t('backend', 'Товары');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
 <p>
-    <?= Html::a(Yii::t('backend', 'Create Product'), ['create'], ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
+    <?= Html::a(Yii::t('backend', 'Создать продукт'), ['create'], ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
 </p>
 
 <?php echo Html::beginForm(['/product/checkbox'], 'post') ?>
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
-    'summary' => Yii::t('admin', 'Отображено {begin} - из {totalCount} элементов'),
+    'summary' => Yii::t('backend', 'Отображено {begin} - из {totalCount} элементов'),
     'tableOptions' => [
         'class' => 'table table-banded',
     ],
@@ -31,16 +31,34 @@ $this->params['breadcrumbs'][] = $this->title;
         [
             'class' => 'yii\grid\CheckboxColumn',
             'options' => ['width' => '10px'],
-            'checkboxOptions' => function ($model, $key, $index, $column) {
+            'checkboxOptions' => function ($model) {
                 return ['value' => $model->id];
             }
         ],
 
         'id',
-        'category_id',
-        'price',
-        'created_at',
-        'updated_at',
+        [
+            'attribute' => 'header',
+            'label' => Yii::t('backend', 'Заголовок'),
+            'value' => function ($model) {
+                return $model->header;
+            }
+        ],
+        [
+            'attribute' => 'short_content',
+            'label' => Yii::t('backend', 'Краткое содержание'),
+            'value' => function ($model) {
+                return $model->short_content;
+            }
+        ],
+        [
+            'format' => 'html',
+            'label' => 'Фото',
+            'value' => function ($data) {
+                $image = $data->getImages($data->image);
+                return Html::img($data->getImage($image[0]), ['height' => 155, 'width' => 110]);
+            }
+        ],
         //'status',
         //'image:ntext',
 
@@ -49,12 +67,12 @@ $this->params['breadcrumbs'][] = $this->title;
 ]); ?>
 
 <?php echo Html::dropDownList('action', '', [
-    '' => 'Выберите действия',
-    'noactive' => 'Снять с публикации',
-    'inactive' => 'Опубликовать',
-    'delete' => 'Удалить'
+    '' => ''.Yii::t('backend', 'Выберите действие').'',
+    'noactive' => ''.Yii::t('backend', 'Снять с публикации').'',
+    'inactive' => ''.Yii::t('backend', 'Опубликовать').'',
+    'delete' => ''.Yii::t('backend', 'Удалить').'',
 ]) ?>
-<?php echo Html::submitButton('Применить', ['class' => 'btn btn-primary']) ?>
+<?php echo Html::submitButton(''.Yii::t('backend', 'Применить').'', ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
 <?php Pjax::end(); ?>
 <?php Html::endForm(); ?>
 

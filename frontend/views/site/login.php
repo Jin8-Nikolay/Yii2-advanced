@@ -1,41 +1,54 @@
 <?php
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \common\models\LoginForm */
-
+use common\components\MenuCategoryBuilder;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
-$this->title = 'Login';
+$this->title = Yii::t('frontend', 'Авторизоваться');
+$this->params['flag'] = true;
 $this->params['breadcrumbs'][] = $this->title;
+$this->params['main_category'] = true;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+<main id="authentication" class="inner-bottom-md">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <section class="section sign-in inner-right-xs">
+                    <h2 class="bordered"><?php echo Yii::t('frontend', 'Авторизация')?></h2>
+                    <p><?php echo Yii::t('frontend', 'Здравствуйте, Добро пожаловать в ваш аккаунт')?></p>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                    <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+                    <form role="form" class="login-form cf-style-1">
+                        <div class="field-row">
+                            <label><?php echo Yii::t('frontend', 'имя пользователя') ?></label>
+                            <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'class' => 'le-input'])->label(false) ?>
+                        </div>
 
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+                        <div class="field-row">
+                            <label><?php echo Yii::t('frontend', 'Пароль')?></label>
+                            <?= $form->field($model, 'password')->passwordInput(['class' => 'le-input'])->label(false) ?>
+                        </div>
 
-                <?= $form->field($model, 'password')->passwordInput() ?>
+                        <div class="field-row clearfix">
+                            <span class="pull-left">
+                                <label class="content-color" style="margin-left: 20px">
+                                    <?= $form->field($model, 'rememberMe')->checkbox(['class' => 'le-checbox auto-width inline'])->label(false) ?>
+                                    <span class="bold"><?php echo Yii::t('frontend', 'Запомнить меня')?></span>
+                            </span>
+                            <span class="pull-right">
+                                <?= Html::a(' ' . Yii::t('frontend', 'Забыли пароль ?') . ' ', ['site/request-password-reset'], ['class' => 'content-color bold']) ?>
+                            </span>
+                        </div>
 
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
-                    <br>
-                    Need new verification email? <?= Html::a('Resend', ['site/resend-verification-email']) ?>
-                </div>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
-        </div>
-    </div>
-</div>
+                        <div class="buttons-holder">
+                            <?= Html::submitButton(' ' . Yii::t('frontend', 'Авторизоваться') . ' ', ['class' => 'le-button huge', 'name' => 'login-button']) ?>
+                        </div><!-- /.buttons-holder -->
+                    </form><!-- /.cf-style-1 -->
+                    <?php ActiveForm::end(); ?>
+                </section><!-- /.sign-in -->
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</main>

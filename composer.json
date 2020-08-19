@@ -22,7 +22,8 @@
         "creocoder/yii2-translateable": "^1.0",
         "kartik-v/yii2-widget-select2": "@dev",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "iutbay/yii2-mm" : "*"
+        "iutbay/yii2-mm" : "*",
+        "kartik-v/yii2-widget-rating": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

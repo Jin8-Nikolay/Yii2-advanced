@@ -28,17 +28,17 @@ class ProductTranslate extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('backend', 'ID'),
-            'product_id' => Yii::t('backend', 'Product ID'),
-            'language' => Yii::t('backend', 'Language'),
-            'meta_title' => Yii::t('backend', 'Meta Title'),
-            'meta_description' => Yii::t('backend', 'Meta Description'),
-            'header' => Yii::t('backend', 'Header'),
-            'content' => Yii::t('backend', 'Content'),
-            'short_content' => Yii::t('backend', 'Short Content'),
+            'product_id' => Yii::t('backend', 'ID Товара'),
+            'language' => Yii::t('backend', 'Язык'),
+            'meta_title' => Yii::t('backend', 'Мета Название'),
+            'meta_description' => Yii::t('backend', 'Мета Описание'),
+            'header' => Yii::t('backend', 'Заголовок'),
+            'content' => Yii::t('backend', 'Содержание'),
+            'short_content' => Yii::t('backend', 'Краткое содержание'),
         ];
     }
 
     public function getProduct(){
-        return $this->hasMany(Product::className(), ['id' => 'product_id']);
+        return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
 }

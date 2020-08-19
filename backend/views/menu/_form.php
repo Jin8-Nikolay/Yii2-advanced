@@ -67,7 +67,7 @@ use yii\widgets\ActiveForm;
         <?= $form->field($model, 'content')->hiddenInput(['class' => 'jsonOutput', 'value' => '[{"id":10,"title":"Главная","customSelect":"/","__domenu_params":{},"select2ScrollPosition":{"x":0,"y":0}}]', ])->label(false) ?>
     <?php endif; ?>
     <div class="form-group">
-        <?= Html::submitButton(Yii::t('backend', 'Save'), ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
+        <?= Html::submitButton(Yii::t('backend', 'Сохранить'), ['class' => 'btn ink-reaction btn-flat btn-lg btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 
